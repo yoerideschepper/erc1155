@@ -27,8 +27,13 @@ contract BlingatonNFT is ERC1155,Ownable {
         storedHash = HashFunction(_password);
     }
     
+    function getStoredHash() public view returns (bytes32) {
+        return storedHash;
+    }
+        
     
-    function mint (string memory _entryCode, bytes32) public onlyOwner  {}
+    
+    function mint (string memory _entryCode, bytes32) public onlyOwner {}
     
     
     
