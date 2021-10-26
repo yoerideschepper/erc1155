@@ -9,6 +9,8 @@ import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contr
 
 contract BlingatonNFT is ERC1155,Ownable {
     
+    bytes32 storedHash;
+    
     constructor () ERC1155 ("https://gateway.pinata.cloud/ipfs/QmVebXP3jEgjPjyJB1dy8Rv3dejyCat4LZHq3jdENm7ELx/{id}.json" ){
         
     }
@@ -20,6 +22,11 @@ contract BlingatonNFT is ERC1155,Ownable {
     function HashFunction(string memory _password) public pure returns (bytes32 )  {
         return keccak256(abi.encodePacked(_password));
     }
+    
+    function HashFunctionAndStore(string memory _password) public onlyOwner{
+        storedHash = HashFunction(_password);
+    }
+    
     
     function mint (string memory _entryCode, bytes32) public onlyOwner  {}
     
